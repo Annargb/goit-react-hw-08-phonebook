@@ -8,6 +8,7 @@ import {
   LabelText,
 } from './ContactsForm.styled';
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
@@ -44,7 +45,7 @@ export const ContactsForm = () => {
         );
 
         contactAlreadyExist
-          ? alert(`${values.name} is already in contacts!`)
+          ? toast.error(`${values.name} is already in contacts!`)
           : dispatch(addContact(values));
       }}
     >

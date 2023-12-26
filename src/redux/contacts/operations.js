@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/contacts';
 
@@ -20,6 +21,7 @@ export const addContact = createAsyncThunk(
   async (newContact, thunkAPI) => {
     try {
       const response = await axios.post('/contacts', newContact);
+      toast.success('A new contact has been successfully created!');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
